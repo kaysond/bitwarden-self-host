@@ -1,12 +1,11 @@
 ---
-
 services:
   bitwarden:
     depends_on:
       - db
     env_file:
       - settings.env
-    image: ${REGISTRY:-ghcr.io/bitwarden}/lite:${TAG:-2026.5.0}
+    image: ${REGISTRY:-ghcr.io/bitwarden}/lite:${TAG:-2026.6.2}
     user: 999:999
     tmpfs: /tmp:rw,noexec,nosuid,nodev,size=512m
     read_only: true
@@ -14,8 +13,8 @@ services:
       - no-new-privileges
     restart: always
     ports:
-      - "80:8080"
-      - "443:8443"
+      - '80:8080'
+      - '443:8443'
     volumes:
       # The user specified above must have permissions
       # for the bind mount on the host
@@ -24,10 +23,10 @@ services:
   # MariaDB Example
   db:
     environment:
-      MARIADB_USER: "bitwarden"
-      MARIADB_PASSWORD: "super_strong_password"
-      MARIADB_DATABASE: "bitwarden_vault"
-      MARIADB_RANDOM_ROOT_PASSWORD: "true"
+      MARIADB_USER: 'bitwarden'
+      MARIADB_PASSWORD: 'super_strong_password'
+      MARIADB_DATABASE: 'bitwarden_vault'
+      MARIADB_RANDOM_ROOT_PASSWORD: 'true'
     image: mariadb:10
     restart: always
     volumes:
